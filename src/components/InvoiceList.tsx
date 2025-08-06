@@ -1,18 +1,32 @@
 import { Link } from "@tanstack/react-router";
+import { iso } from "@iso";
 import { currencyFormatter } from "../../utils";
 // import CreateInvoiceForm from "./forms/create-invoice";
 // import { Customer } from "@/types";
 import { FilePlusIcon } from ".";
 import { InvoiceListItem } from "../../utils/types";
 
-
-export function InvoiceList({
-  children,
-  invoiceListItems,
-}: {
-  children: React.ReactNode;
+type InvoiceListData = {
   invoiceListItems: InvoiceListItem[];
-}) {
+}
+
+export const InvoiceList = iso(`
+  field InvoiceSummary.InvoiceList @component {
+    invoiceListItems {
+      id
+      name
+      number
+      totalAmount
+      totalDeposits
+      daysToDueDate
+      dueStatus
+      dueStatusDisplay
+    }
+  }
+`)(function InvoiceListComponent({ data }, props) {
+
+  const { invoiceListItems } = data as InvoiceListData;
+
   return (
     <div className="flex overflow-hidden rounded-lg border border-gray-100">
       <div className="w-1/2 border-r border-gray-100">
@@ -64,7 +78,8 @@ export function InvoiceList({
           ))}
         </div>
       </div>
-      <div className="w-1/2">{children}</div>
+      <div className="w-1/2">{props.children}</div>
     </div>
   );
-}
+});
+

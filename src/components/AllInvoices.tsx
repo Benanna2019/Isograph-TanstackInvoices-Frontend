@@ -1,31 +1,20 @@
 
 import { iso } from '@iso';
-import { InvoiceList } from './invoice-list';
 import { Outlet } from '@tanstack/react-router';
 import { InvoicesInfo } from './invoices-info';
 import { LabelText } from './label-text';
-import { InvoiceListItem } from '@/types';
 
 export const AllInvoices = iso(`
   field Query.AllInvoices @component {
     invoiceSummary {
         dueSoonAmount
         overdueAmount
-        invoiceListItems {
-            id
-            name
-            number
-            totalAmount
-            totalDeposits
-            dueStatusDisplay
-            dueStatus
-            daysToDueDate
-        }  
+        InvoiceList
     }
   }
 `)(function AllInvoicesComponent({ data }) {
     const {
-        invoiceSummary: { invoiceListItems, dueSoonAmount, overdueAmount },
+        invoiceSummary: { dueSoonAmount, overdueAmount, InvoiceList },
     } = data;
 
     // need to build the data on the backend I think that would send it to the frontend
@@ -49,7 +38,7 @@ export const AllInvoices = iso(`
             <div className="h-4" />
             <LabelText>Invoice List</LabelText>
             <div className="h-2" />
-            <InvoiceList invoiceListItems={invoiceListItems as InvoiceListItem[]}>
+            <InvoiceList>
                 <Outlet />
             </InvoiceList>
         </div>

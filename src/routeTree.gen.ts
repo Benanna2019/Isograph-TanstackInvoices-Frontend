@@ -14,7 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PokemonsIndexRouteImport } from './routes/pokemons/index'
 import { Route as SalesSubscriptionsRouteImport } from './routes/sales/subscriptions'
 import { Route as PokemonsPokemonIdRouteImport } from './routes/pokemons/$pokemonId'
-import { Route as SalesInvoicesIndexRouteImport } from './routes/sales/invoices/index'
+import { Route as SalesInvoicesRouteRouteImport } from './routes/sales/invoices/route'
 import { Route as SalesDepositsIndexRouteImport } from './routes/sales/deposits/index'
 import { Route as SalesCustomersIndexRouteImport } from './routes/sales/customers/index'
 import { Route as SalesInvoicesNewRouteImport } from './routes/sales/invoices/new'
@@ -45,9 +45,9 @@ const PokemonsPokemonIdRoute = PokemonsPokemonIdRouteImport.update({
   path: '/pokemons/$pokemonId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SalesInvoicesIndexRoute = SalesInvoicesIndexRouteImport.update({
-  id: '/invoices/',
-  path: '/invoices/',
+const SalesInvoicesRouteRoute = SalesInvoicesRouteRouteImport.update({
+  id: '/invoices',
+  path: '/invoices',
   getParentRoute: () => SalesRouteRoute,
 } as any)
 const SalesDepositsIndexRoute = SalesDepositsIndexRouteImport.update({
@@ -61,19 +61,20 @@ const SalesCustomersIndexRoute = SalesCustomersIndexRouteImport.update({
   getParentRoute: () => SalesRouteRoute,
 } as any)
 const SalesInvoicesNewRoute = SalesInvoicesNewRouteImport.update({
-  id: '/invoices/new',
-  path: '/invoices/new',
-  getParentRoute: () => SalesRouteRoute,
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => SalesInvoicesRouteRoute,
 } as any)
 const SalesInvoicesInvoiceIdRoute = SalesInvoicesInvoiceIdRouteImport.update({
-  id: '/invoices/$invoiceId',
-  path: '/invoices/$invoiceId',
-  getParentRoute: () => SalesRouteRoute,
+  id: '/$invoiceId',
+  path: '/$invoiceId',
+  getParentRoute: () => SalesInvoicesRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sales': typeof SalesRouteRouteWithChildren
+  '/sales/invoices': typeof SalesInvoicesRouteRouteWithChildren
   '/pokemons/$pokemonId': typeof PokemonsPokemonIdRoute
   '/sales/subscriptions': typeof SalesSubscriptionsRoute
   '/pokemons': typeof PokemonsIndexRoute
@@ -81,11 +82,11 @@ export interface FileRoutesByFullPath {
   '/sales/invoices/new': typeof SalesInvoicesNewRoute
   '/sales/customers': typeof SalesCustomersIndexRoute
   '/sales/deposits': typeof SalesDepositsIndexRoute
-  '/sales/invoices': typeof SalesInvoicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sales': typeof SalesRouteRouteWithChildren
+  '/sales/invoices': typeof SalesInvoicesRouteRouteWithChildren
   '/pokemons/$pokemonId': typeof PokemonsPokemonIdRoute
   '/sales/subscriptions': typeof SalesSubscriptionsRoute
   '/pokemons': typeof PokemonsIndexRoute
@@ -93,12 +94,12 @@ export interface FileRoutesByTo {
   '/sales/invoices/new': typeof SalesInvoicesNewRoute
   '/sales/customers': typeof SalesCustomersIndexRoute
   '/sales/deposits': typeof SalesDepositsIndexRoute
-  '/sales/invoices': typeof SalesInvoicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sales': typeof SalesRouteRouteWithChildren
+  '/sales/invoices': typeof SalesInvoicesRouteRouteWithChildren
   '/pokemons/$pokemonId': typeof PokemonsPokemonIdRoute
   '/sales/subscriptions': typeof SalesSubscriptionsRoute
   '/pokemons/': typeof PokemonsIndexRoute
@@ -106,13 +107,13 @@ export interface FileRoutesById {
   '/sales/invoices/new': typeof SalesInvoicesNewRoute
   '/sales/customers/': typeof SalesCustomersIndexRoute
   '/sales/deposits/': typeof SalesDepositsIndexRoute
-  '/sales/invoices/': typeof SalesInvoicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/sales'
+    | '/sales/invoices'
     | '/pokemons/$pokemonId'
     | '/sales/subscriptions'
     | '/pokemons'
@@ -120,11 +121,11 @@ export interface FileRouteTypes {
     | '/sales/invoices/new'
     | '/sales/customers'
     | '/sales/deposits'
-    | '/sales/invoices'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/sales'
+    | '/sales/invoices'
     | '/pokemons/$pokemonId'
     | '/sales/subscriptions'
     | '/pokemons'
@@ -132,11 +133,11 @@ export interface FileRouteTypes {
     | '/sales/invoices/new'
     | '/sales/customers'
     | '/sales/deposits'
-    | '/sales/invoices'
   id:
     | '__root__'
     | '/'
     | '/sales'
+    | '/sales/invoices'
     | '/pokemons/$pokemonId'
     | '/sales/subscriptions'
     | '/pokemons/'
@@ -144,7 +145,6 @@ export interface FileRouteTypes {
     | '/sales/invoices/new'
     | '/sales/customers/'
     | '/sales/deposits/'
-    | '/sales/invoices/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -191,11 +191,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PokemonsPokemonIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sales/invoices/': {
-      id: '/sales/invoices/'
+    '/sales/invoices': {
+      id: '/sales/invoices'
       path: '/invoices'
       fullPath: '/sales/invoices'
-      preLoaderRoute: typeof SalesInvoicesIndexRouteImport
+      preLoaderRoute: typeof SalesInvoicesRouteRouteImport
       parentRoute: typeof SalesRouteRoute
     }
     '/sales/deposits/': {
@@ -214,37 +214,46 @@ declare module '@tanstack/react-router' {
     }
     '/sales/invoices/new': {
       id: '/sales/invoices/new'
-      path: '/invoices/new'
+      path: '/new'
       fullPath: '/sales/invoices/new'
       preLoaderRoute: typeof SalesInvoicesNewRouteImport
-      parentRoute: typeof SalesRouteRoute
+      parentRoute: typeof SalesInvoicesRouteRoute
     }
     '/sales/invoices/$invoiceId': {
       id: '/sales/invoices/$invoiceId'
-      path: '/invoices/$invoiceId'
+      path: '/$invoiceId'
       fullPath: '/sales/invoices/$invoiceId'
       preLoaderRoute: typeof SalesInvoicesInvoiceIdRouteImport
-      parentRoute: typeof SalesRouteRoute
+      parentRoute: typeof SalesInvoicesRouteRoute
     }
   }
 }
 
-interface SalesRouteRouteChildren {
-  SalesSubscriptionsRoute: typeof SalesSubscriptionsRoute
+interface SalesInvoicesRouteRouteChildren {
   SalesInvoicesInvoiceIdRoute: typeof SalesInvoicesInvoiceIdRoute
   SalesInvoicesNewRoute: typeof SalesInvoicesNewRoute
+}
+
+const SalesInvoicesRouteRouteChildren: SalesInvoicesRouteRouteChildren = {
+  SalesInvoicesInvoiceIdRoute: SalesInvoicesInvoiceIdRoute,
+  SalesInvoicesNewRoute: SalesInvoicesNewRoute,
+}
+
+const SalesInvoicesRouteRouteWithChildren =
+  SalesInvoicesRouteRoute._addFileChildren(SalesInvoicesRouteRouteChildren)
+
+interface SalesRouteRouteChildren {
+  SalesInvoicesRouteRoute: typeof SalesInvoicesRouteRouteWithChildren
+  SalesSubscriptionsRoute: typeof SalesSubscriptionsRoute
   SalesCustomersIndexRoute: typeof SalesCustomersIndexRoute
   SalesDepositsIndexRoute: typeof SalesDepositsIndexRoute
-  SalesInvoicesIndexRoute: typeof SalesInvoicesIndexRoute
 }
 
 const SalesRouteRouteChildren: SalesRouteRouteChildren = {
+  SalesInvoicesRouteRoute: SalesInvoicesRouteRouteWithChildren,
   SalesSubscriptionsRoute: SalesSubscriptionsRoute,
-  SalesInvoicesInvoiceIdRoute: SalesInvoicesInvoiceIdRoute,
-  SalesInvoicesNewRoute: SalesInvoicesNewRoute,
   SalesCustomersIndexRoute: SalesCustomersIndexRoute,
   SalesDepositsIndexRoute: SalesDepositsIndexRoute,
-  SalesInvoicesIndexRoute: SalesInvoicesIndexRoute,
 }
 
 const SalesRouteRouteWithChildren = SalesRouteRoute._addFileChildren(

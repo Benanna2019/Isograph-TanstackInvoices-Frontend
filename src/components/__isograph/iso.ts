@@ -1,4 +1,6 @@
 import type { IsographEntrypoint } from '@isograph/react';
+import { type InvoiceSummary__InvoiceListItems__param } from './InvoiceSummary/InvoiceListItems/param_type';
+import { type InvoiceSummary__InvoiceList__param } from './InvoiceSummary/InvoiceList/param_type';
 import { type Query__AllInvoices__param } from './Query/AllInvoices/param_type';
 import entrypoint_Query__AllInvoices from '../__isograph/Query/AllInvoices/entrypoint';
 
@@ -49,6 +51,14 @@ type MatchesWhitespaceAndString<
   TString extends string,
   T
 > = Whitespace<T> extends `${TString}${string}` ? T : never;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field InvoiceSummary.InvoiceListItems', T>
+): IdentityWithParamComponent<InvoiceSummary__InvoiceListItems__param>;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field InvoiceSummary.InvoiceList', T>
+): IdentityWithParamComponent<InvoiceSummary__InvoiceList__param>;
 
 export function iso<T>(
   param: T & MatchesWhitespaceAndString<'field Query.AllInvoices', T>

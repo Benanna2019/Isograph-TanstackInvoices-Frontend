@@ -1,6 +1,7 @@
 import type {ComponentReaderArtifact, ExtractSecondParam, ReaderAst } from '@isograph/react';
 import { Query__AllInvoices__param } from './param_type';
 import { AllInvoices as resolver } from '../../../AllInvoices';
+import InvoiceSummary__InvoiceList__resolver_reader from '../../InvoiceSummary/InvoiceList/resolver_reader';
 
 const readerAst: ReaderAst<Query__AllInvoices__param> = [
   {
@@ -26,70 +27,11 @@ const readerAst: ReaderAst<Query__AllInvoices__param> = [
         isUpdatable: false,
       },
       {
-        kind: "Linked",
-        fieldName: "invoiceListItems",
-        alias: null,
+        kind: "Resolver",
+        alias: "InvoiceList",
         arguments: null,
-        condition: null,
-        isUpdatable: false,
-        selections: [
-          {
-            kind: "Scalar",
-            fieldName: "id",
-            alias: null,
-            arguments: null,
-            isUpdatable: false,
-          },
-          {
-            kind: "Scalar",
-            fieldName: "name",
-            alias: null,
-            arguments: null,
-            isUpdatable: false,
-          },
-          {
-            kind: "Scalar",
-            fieldName: "number",
-            alias: null,
-            arguments: null,
-            isUpdatable: false,
-          },
-          {
-            kind: "Scalar",
-            fieldName: "totalAmount",
-            alias: null,
-            arguments: null,
-            isUpdatable: false,
-          },
-          {
-            kind: "Scalar",
-            fieldName: "totalDeposits",
-            alias: null,
-            arguments: null,
-            isUpdatable: false,
-          },
-          {
-            kind: "Scalar",
-            fieldName: "dueStatusDisplay",
-            alias: null,
-            arguments: null,
-            isUpdatable: false,
-          },
-          {
-            kind: "Scalar",
-            fieldName: "dueStatus",
-            alias: null,
-            arguments: null,
-            isUpdatable: false,
-          },
-          {
-            kind: "Scalar",
-            fieldName: "daysToDueDate",
-            alias: null,
-            arguments: null,
-            isUpdatable: false,
-          },
-        ],
+        readerArtifact: InvoiceSummary__InvoiceList__resolver_reader,
+        usedRefetchQueries: [],
       },
     ],
   },
