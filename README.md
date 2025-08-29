@@ -1,35 +1,27 @@
-# React + TypeScript + Vite + Isograph
+# Tanstack Router + Isograph
 
-This template provides a minimal setup to get Isograph working in Vite with HMR. It queries the [GraphQL Pokemon API](https://graphql-pokemon.js.org) to display the original 151 Pokemon using Isograph components.
+This is a little demo project I have adapted from Kent C Dodds Frontend Masters Remix workshop
 
-## Getting started
+The primary aim here is to get familiar with Isograph.
 
-Install dependencies:
+## Setup
 
-```bash
-pnpm install
-```
+First install packages with `pnpm i`
 
-From the root of the project, start the Isograph compiler:
+Then run `pnpm run setup`. This will push the schema to the sqlite db, seed it, and generate the prisma client
 
-```bash
-pnpm run watch-vite-demo
-```
+_Note: In the future there will be a .vsix file included for the isograph extension but if you are using vscode you can install the extension by searching for `isograph`_
 
-From the `demos/vite-demo`, start the Vite server:
+### Isograph
 
-```bash
-pnpm run dev
-```
+The primary files that currently are using isograph are the following under `components/` and they specific files contain iso literals. The other primary file is `isograph.config.json`.
 
-## How to Configure
+### App Overview
 
-The Vite configuration is slightly different from the NextJS configuration found on the [Quickstart](https://isograph.dev/docs/quickstart/) guide.
+This is a simple invoices app. Click sales, then click invoices, then click on an invoice.
 
-Review the following files to see the proper configuration you'll need to match to get a Vite project working with Isograph after running the Vite [Getting Started](https://vite.dev/guide/#scaffolding-your-first-vite-project) steps:
+Mutations are not completely setup yet.
 
-1. `vite.config.ts`
-2. `.babelrc.json`
-3. `tsconfig.app.json`
-4. `tsconfig.node.json`
-# Isograph-TanstackInvoices-Frontend
+Also, the server file contains a setup for domain driven design. The heart of Isograph is the `schema.graphql` file at the root of the app.
+
+If you look under `server/lib/graphql/schema.ts` you will see we are merging all of those schemas together and then we have a script that watches that file to update our root schema. Probably more room for optimizations and automated imports for new schemas but this is where we are.

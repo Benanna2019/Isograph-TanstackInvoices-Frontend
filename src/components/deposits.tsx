@@ -2,11 +2,11 @@ import { useRef } from "react";
 import { currencyFormatter } from "../../utils";
 import { LabelText, inputClasses, submitButtonClasses } from "./label-text";
 import { Link, useRouter } from "@tanstack/react-router";
-import { useMutation } from "@tanstack/react-query";
-import { createDeposit } from "@/actions";
-import { queryClient } from "@/routes";
-import { parseDate } from "../../utils/index";
-import invariant from "tiny-invariant";
+// import { useMutation } from "@tanstack/react-query";
+// import { createDeposit } from "../actions";
+// import { queryClient } from "../routes";
+// import { parseDate } from "../utils";
+// import invariant from "tiny-invariant";
 
 interface DepositData {
   deposits: {
@@ -32,27 +32,27 @@ export function Deposits({
 
   const router = useRouter();
 
-  const { mutateAsync, variables } = useMutation({
-    mutationFn: (data: FormData) => {
-      return createDeposit(data);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["invoices", invoiceId] });
-      formRef.current?.reset();
-      router.invalidate();
-    },
-  });
+  // const { mutateAsync, variables } = useMutation({
+  //   mutationFn: (data: FormData) => {
+  //     return createDeposit(data);
+  //   },
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: ["invoices", invoiceId] });
+  //     formRef.current?.reset();
+  //     router.invalidate();
+  //   },
+  // });
 
-  console.log("variables", variables);
+  // console.log("variables", variables);
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const formData = new FormData(event.target as HTMLFormElement);
-    const res = await mutateAsync(formData);
-    console.log("res", res);
-    router.invalidate();
-  };
+  // const handleSubmit = async (event: any) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   const formData = new FormData(event.target as HTMLFormElement);
+  //   const res = await mutateAsync(formData);
+  //   console.log("res", res);
+  //   router.invalidate();
+  // };
 
   return (
     <div>
@@ -60,13 +60,13 @@ export function Deposits({
       {data.deposits.length > 0 ? (
         data.deposits.map((deposit) => (
           <div key={deposit.id} className={lineItemClassName}>
-            <Link
+            {/* <Link
               to="/sales/deposits/$depositId"
               params={{ depositId: deposit.id }}
               className="text-blue-600 underline"
             >
               {deposit.depositDateFormatted}
-            </Link>
+            </Link> */}
             <div>{currencyFormatter.format(deposit.amount)}</div>
           </div>
         ))
@@ -74,7 +74,7 @@ export function Deposits({
         <div>None yet</div>
       )}
       <form
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
         className="grid grid-cols-1 gap-x-4 gap-y-2 lg:grid-cols-2"
         ref={formRef}
         noValidate

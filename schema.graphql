@@ -76,6 +76,12 @@ enum DueStatus {
   due
 }
 
+type ModifiedDeposit {
+  id: ID!
+  amount: Float!
+  depositDateFormatted: String!
+}
+
 type Invoice {
   id: ID!
   number: Int!
@@ -115,12 +121,14 @@ type InvoiceSummary {
 }
 
 type InvoiceDetails {
-  invoice: InvoiceWithRelations!
   totalAmount: Float!
-  totalDeposits: Float!
-  daysToDueDate: Int!
   dueStatus: DueStatus!
-  dueStatusDisplay: String!
+  dueDisplay: String!
+  customerName: String!
+  customerId: String!
+  invoiceDateDisplay: String!
+  lineItems: [LineItem!]!
+  deposits: [ModifiedDeposit!]!
 }
 
 type InvoiceWithRelations {

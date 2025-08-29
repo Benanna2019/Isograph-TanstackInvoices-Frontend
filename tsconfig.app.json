@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
@@ -23,17 +19,10 @@
     "noFallthroughCasesInSwitch": true,
     /* Paths */
     "paths": {
-      "@iso": [
-        "./src/components/__isograph/iso.ts"
-      ],
-      "@/types": [
-        "./utils/types.ts"
-      ]
+      "@iso": ["./src/components/__isograph/iso.ts"],
+      "@/types": ["./utils/types.ts"]
     },
     "composite": true
   },
-  "include": [
-    "src",
-    "utils"
-  ]
+  "include": ["src", "utils"]
 }

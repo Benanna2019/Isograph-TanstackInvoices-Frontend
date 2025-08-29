@@ -1,6 +1,8 @@
 import type { IsographEntrypoint } from '@isograph/react';
 import { type Query__AllInvoices__param } from './Query/AllInvoices/param_type';
+import { type Query__InvoiceDetails__param } from './Query/InvoiceDetails/param_type';
 import entrypoint_Query__AllInvoices from '../__isograph/Query/AllInvoices/entrypoint';
+import entrypoint_Query__InvoiceDetails from '../__isograph/Query/InvoiceDetails/entrypoint';
 
 // This is the type given to regular client fields.
 // This means that the type of the exported iso literal is exactly
@@ -55,8 +57,16 @@ export function iso<T>(
 ): IdentityWithParamComponent<Query__AllInvoices__param>;
 
 export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field Query.InvoiceDetails', T>
+): IdentityWithParamComponent<Query__InvoiceDetails__param>;
+
+export function iso<T>(
   param: T & MatchesWhitespaceAndString<'entrypoint Query.AllInvoices', T>
 ): typeof entrypoint_Query__AllInvoices;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'entrypoint Query.InvoiceDetails', T>
+): typeof entrypoint_Query__InvoiceDetails;
 
 export function iso(_isographLiteralText: string):
   | IdentityWithParam<any>
