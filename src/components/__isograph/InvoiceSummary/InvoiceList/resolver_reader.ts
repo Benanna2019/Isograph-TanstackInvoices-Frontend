@@ -68,6 +68,7 @@ const readerAst: ReaderAst<InvoiceSummary__InvoiceList__param> = [
         isUpdatable: false,
       },
     ],
+    refetchQueryIndex: null,
   },
 ];
 

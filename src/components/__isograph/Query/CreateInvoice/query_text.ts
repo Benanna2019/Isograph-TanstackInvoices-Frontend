@@ -1,4 +1,4 @@
-export default 'query CreateInvoice  {\
+export default 'query CreateInvoice {\
   customers {\
     id,\
     email,\

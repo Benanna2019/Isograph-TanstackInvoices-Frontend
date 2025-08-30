@@ -1,4 +1,4 @@
-export default 'query AllInvoices  {\
+export default 'query AllInvoices {\
   invoiceSummary {\
     dueSoonAmount,\
     invoiceListItems {\

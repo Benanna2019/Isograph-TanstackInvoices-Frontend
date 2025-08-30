@@ -60,8 +60,10 @@ const readerAst: ReaderAst<Mutation__CreateInvoice__param> = [
             isUpdatable: false,
           },
         ],
+        refetchQueryIndex: null,
       },
     ],
+    refetchQueryIndex: null,
   },
 ];
 

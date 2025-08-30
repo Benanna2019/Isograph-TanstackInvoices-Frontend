@@ -33,6 +33,7 @@ const readerAst: ReaderAst<Query__CreateInvoice__param> = [
         isUpdatable: false,
       },
     ],
+    refetchQueryIndex: null,
   },
 ];
 
