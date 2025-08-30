@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently 'npm:dev:*'",
+    "dev": "concurrently 'pnpm:dev:*'",
     "dev:frontend": "vite",
     "dev:server": "tsx watch server/server.ts",
     "dev:iso": "iso --config ./isograph.config.json --watch",
