@@ -6,7 +6,7 @@ The primary aim here is to get familiar with Isograph.
 
 ## Setup
 
-First install packages with `pnpm i`
+First change the `.env.example` to just a `.env` file and install packages with `pnpm i`
 
 Then run `pnpm run setup`. This will push the schema to the sqlite db, seed it, and generate the prisma client
 
