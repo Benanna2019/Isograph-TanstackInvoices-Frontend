@@ -10,6 +10,8 @@ First change the `.env.example` to just a `.env` file and install packages with 
 
 Then run `pnpm run setup`. This will push the schema to the sqlite db, seed it, and generate the prisma client
 
+Then run the dev server with `pnpm dev`. This will concurrently run the isograph server, the graphql server which can be viewed at `localhost:8080`, as well as the dev server at `localhost:5173`
+
 _Note: In the future there will be a .vsix file included for the isograph extension but if you are using vscode you can install the extension by searching for `isograph`_
 
 ### Isograph
