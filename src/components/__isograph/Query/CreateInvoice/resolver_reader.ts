@@ -1,12 +1,11 @@
 import type {ComponentReaderArtifact, ExtractSecondParam, ReaderAst } from '@isograph/react';
-import { Query__AllInvoices__param } from './param_type';
-import { AllInvoices as resolver } from '../../../AllInvoices';
-import InvoiceSummary__InvoiceList__resolver_reader from '../../InvoiceSummary/InvoiceList/resolver_reader';
+import { Query__CreateInvoice__param } from './param_type';
+import { CreateInvoice as resolver } from '../../../CreateInvoice';
 
-const readerAst: ReaderAst<Query__AllInvoices__param> = [
+const readerAst: ReaderAst<Query__CreateInvoice__param> = [
   {
     kind: "Linked",
-    fieldName: "invoiceSummary",
+    fieldName: "customers",
     alias: null,
     arguments: null,
     condition: null,
@@ -14,35 +13,35 @@ const readerAst: ReaderAst<Query__AllInvoices__param> = [
     selections: [
       {
         kind: "Scalar",
-        fieldName: "dueSoonAmount",
+        fieldName: "id",
         alias: null,
         arguments: null,
         isUpdatable: false,
       },
       {
         kind: "Scalar",
-        fieldName: "overdueAmount",
+        fieldName: "name",
         alias: null,
         arguments: null,
         isUpdatable: false,
       },
       {
-        kind: "Resolver",
-        alias: "InvoiceList",
+        kind: "Scalar",
+        fieldName: "email",
+        alias: null,
         arguments: null,
-        readerArtifact: InvoiceSummary__InvoiceList__resolver_reader,
-        usedRefetchQueries: [],
+        isUpdatable: false,
       },
     ],
   },
 ];
 
 const artifact: ComponentReaderArtifact<
-  Query__AllInvoices__param,
+  Query__CreateInvoice__param,
   ExtractSecondParam<typeof resolver>
 > = {
   kind: "ComponentReaderArtifact",
-  fieldName: "Query.AllInvoices",
+  fieldName: "Query.CreateInvoice",
   resolver,
   readerAst,
   hasUpdatable: false,

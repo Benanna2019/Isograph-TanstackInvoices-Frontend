@@ -15,10 +15,10 @@ function RouteComponent() {
   const matches = useMatches();
   const indexMatches = matches.some((m) => equals(m.pathname, "/sales"));
   const invoiceMatches = matches.some((m) =>
-    equals(m.pathname, "/sales/invoices/")
+    equals(m.pathname, "/sales/invoices")
   );
   const customerMatches = matches.some((m) =>
-    equals(m.pathname, "/sales/customers/")
+    equals(m.pathname, "/sales/customers")
   );
   return (
     <div className="relative h-full p-10">
@@ -28,7 +28,10 @@ function RouteComponent() {
         <Link
           to="/sales"
           activeProps={{
-            className: indexMatches ? "font-bold text-black" : "",
+            className:
+              indexMatches && !invoiceMatches && !customerMatches
+                ? "font-bold text-black"
+                : "",
           }}
         >
           Overview
@@ -59,6 +62,9 @@ function RouteComponent() {
         </Link>
       </div>
       <div className="h-4" />
+      {/* I think here I would need to have some better loading state */}
+      {/* Probably each component that has state could show that instead and that should work so that */}
+      {/* I don't have to wait for the whole outlet area to load but just the data */}
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>

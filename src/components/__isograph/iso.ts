@@ -1,7 +1,13 @@
 import type { IsographEntrypoint } from '@isograph/react';
+import { type InvoiceSummary__InvoiceList__param } from './InvoiceSummary/InvoiceList/param_type';
+import { type Mutation__CreateInvoice__param } from './Mutation/CreateInvoice/param_type';
 import { type Query__AllInvoices__param } from './Query/AllInvoices/param_type';
+import { type Query__CreateInvoice__param } from './Query/CreateInvoice/param_type';
+import { type Query__CustomerSelect__param } from './Query/CustomerSelect/param_type';
 import { type Query__InvoiceDetails__param } from './Query/InvoiceDetails/param_type';
+import entrypoint_Mutation__CreateInvoice from '../__isograph/Mutation/CreateInvoice/entrypoint';
 import entrypoint_Query__AllInvoices from '../__isograph/Query/AllInvoices/entrypoint';
+import entrypoint_Query__CreateInvoice from '../__isograph/Query/CreateInvoice/entrypoint';
 import entrypoint_Query__InvoiceDetails from '../__isograph/Query/InvoiceDetails/entrypoint';
 
 // This is the type given to regular client fields.
@@ -53,16 +59,40 @@ type MatchesWhitespaceAndString<
 > = Whitespace<T> extends `${TString}${string}` ? T : never;
 
 export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field InvoiceSummary.InvoiceList', T>
+): IdentityWithParamComponent<InvoiceSummary__InvoiceList__param>;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field Mutation.CreateInvoice', T>
+): IdentityWithParamComponent<Mutation__CreateInvoice__param>;
+
+export function iso<T>(
   param: T & MatchesWhitespaceAndString<'field Query.AllInvoices', T>
 ): IdentityWithParamComponent<Query__AllInvoices__param>;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field Query.CreateInvoice', T>
+): IdentityWithParamComponent<Query__CreateInvoice__param>;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field Query.CustomerSelect', T>
+): IdentityWithParamComponent<Query__CustomerSelect__param>;
 
 export function iso<T>(
   param: T & MatchesWhitespaceAndString<'field Query.InvoiceDetails', T>
 ): IdentityWithParamComponent<Query__InvoiceDetails__param>;
 
 export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'entrypoint Mutation.CreateInvoice', T>
+): typeof entrypoint_Mutation__CreateInvoice;
+
+export function iso<T>(
   param: T & MatchesWhitespaceAndString<'entrypoint Query.AllInvoices', T>
 ): typeof entrypoint_Query__AllInvoices;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'entrypoint Query.CreateInvoice', T>
+): typeof entrypoint_Query__CreateInvoice;
 
 export function iso<T>(
   param: T & MatchesWhitespaceAndString<'entrypoint Query.InvoiceDetails', T>
