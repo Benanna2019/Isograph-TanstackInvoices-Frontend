@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/isographlabs/isograph/refs/heads/main/libs/isograph-compiler/isograph-config-schema.json",
-  "project_root": "./src/components",
+  "project_root": "./src",
+  "artifact_directory": "./src/components",
   "schema": "./schema.graphql",
   "options": {
     "module": "esmodule"

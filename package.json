@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently 'npm:dev:*'",
+    "dev": "concurrently 'pnpm:dev:*'",
     "dev:frontend": "vite",
     "dev:server": "tsx watch server/server.ts",
     "dev:iso": "iso --config ./isograph.config.json --watch",
@@ -20,7 +20,7 @@
     "setup": "npx prisma db push && npx prisma db seed && npx prisma generate"
   },
   "dependencies": {
-    "@isograph/react": "0.3.1",
+    "@isograph/react": "0.0.0-main-9ec4d35d",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/vite": "^4.1.11",
@@ -54,8 +54,8 @@
   "devDependencies": {
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "^9.32.0",
-    "@isograph/babel-plugin": "0.3.1",
-    "@isograph/compiler": "0.3.1",
+    "@isograph/babel-plugin": "0.0.0-main-9ec4d35d",
+    "@isograph/compiler": "0.0.0-main-9ec4d35d",
     "@tanstack/router-plugin": "^1.128.6",
     "@types/node": "^24.1.0",
     "@types/ramda": "^0.31.0",

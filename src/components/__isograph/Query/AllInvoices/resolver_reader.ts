@@ -34,6 +34,7 @@ const readerAst: ReaderAst<Query__AllInvoices__param> = [
         usedRefetchQueries: [],
       },
     ],
+    refetchQueryIndex: null,
   },
 ];
 
