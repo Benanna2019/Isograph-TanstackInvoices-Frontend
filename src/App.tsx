@@ -2,20 +2,28 @@ import {
   createIsographEnvironment,
   createIsographStore,
   IsographEnvironmentProvider,
-} from '@isograph/react';
-import { Suspense, useMemo } from 'react';
-import { createRouter, RouterProvider } from '@tanstack/react-router';
+  IsographOperation,
+  IsographPersistedOperation,
+} from "@isograph/react";
+import { Suspense, useMemo } from "react";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
 function makeNetworkRequest<T>(
-  queryText: string,
-  variables: unknown,
+  query: IsographOperation | IsographPersistedOperation,
+  variables: unknown
 ): Promise<T> {
-  // replacing with my local host graphql api to see if I can get it to work 
-  const promise = fetch('http://localhost:8080/api/graphql', {
-    method: 'POST',
+  if (query.kind === "PersistedOperation") {
+    throw new Error("Persisted Operations are not enabled in this project.");
+  }
+
+  const queryText = query.text;
+
+  // replacing with my local host graphql api to see if I can get it to work
+  const promise = fetch("http://localhost:8080/api/graphql", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ query: queryText, variables }),
   }).then(async (response) => {
@@ -25,19 +33,19 @@ function makeNetworkRequest<T>(
       /**
        * Enforce that the network response follows the specification:: {@link https://spec.graphql.org/draft/#sec-Errors}.
        */
-      if (Object.hasOwn(json, 'errors')) {
+      if (Object.hasOwn(json, "errors")) {
         if (!Array.isArray(json.errors) || json.errors.length === 0) {
-          throw new Error('GraphQLSpecificationViolationError', {
+          throw new Error("GraphQLSpecificationViolationError", {
             cause: json,
           });
         }
-        throw new Error('GraphQLError', {
+        throw new Error("GraphQLError", {
           cause: json.errors,
         });
       }
       return json;
     }
-    throw new Error('NetworkError', {
+    throw new Error("NetworkError", {
       cause: json,
     });
   });
@@ -59,9 +67,9 @@ export default function App() {
         createIsographStore(),
         makeNetworkRequest,
         null,
-        typeof window != 'undefined' ? console.log : null,
+        typeof window != "undefined" ? console.log : null
       ),
-    [],
+    []
   );
   return (
     <IsographEnvironmentProvider environment={environment}>
